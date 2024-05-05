@@ -12,6 +12,7 @@ import PageTraces from "./pages/traces";
 import PageWorkflows from "./pages/workflows";
 import PageAlert from "./pages/workflows/alert";
 import PageScale from "./pages/workflows/scale";
+import PageProjects from "./pages/projects";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <PageHome /> },
+      { path: "projects", element: <PageProjects /> },
       { path: "dashboard", element: <PageDashboard /> },
       { path: "logs", element: <PageLogs /> },
       { path: "metrics", element: <PageMetrics /> },

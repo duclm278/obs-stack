@@ -1,8 +1,8 @@
 import { Command } from "lucide-react";
 
 export const Icons = {
-  logo: Command,
-  gitHub: ({ ...props }) => (
+  Logo: Command,
+  GitHub: ({ ...props }) => (
     <svg
       aria-hidden="true"
       focusable="false"

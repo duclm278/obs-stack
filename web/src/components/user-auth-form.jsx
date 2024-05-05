@@ -57,7 +57,7 @@ export function UserAuthForm({ className, ...props }) {
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.GitHub className="mr-2 h-4 w-4" />
         )}{" "}
         GitHub
       </Button>
