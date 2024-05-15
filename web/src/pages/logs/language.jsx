@@ -8,18 +8,66 @@ export const streamOperators = [
 
 // Math
 export const mathOperators = [
-  { name: "+", label: "+" },
-  { name: "-", label: "-" },
-  { name: "*", label: "*" },
-  { name: "/", label: "/" },
-  { name: "%", label: "%" },
-  { name: "^", label: "^" },
-  { name: "==", label: "==" },
-  { name: "!=", label: "!=" },
-  { name: ">", label: ">" },
-  { name: "<", label: "<" },
-  { name: ">=", label: ">=" },
-  { name: "<=", label: "<=" },
+  {
+    name: "+",
+    label: "+",
+    description: "add",
+  },
+  {
+    name: "-",
+    label: "-",
+    description: "subtract",
+  },
+  {
+    name: "*",
+    label: "*",
+    description: "multiply by",
+  },
+  {
+    name: "/",
+    label: "/",
+    description: "divide by",
+  },
+  {
+    name: "%",
+    label: "%",
+    description: "modulo by",
+  },
+  {
+    name: "^",
+    label: "^",
+    description: "exponent",
+  },
+  {
+    name: "==",
+    label: "==",
+    description: "equal to",
+  },
+  {
+    name: "!=",
+    label: "!=",
+    description: "not equal to",
+  },
+  {
+    name: ">",
+    label: ">",
+    description: "greater than",
+  },
+  {
+    name: "<",
+    label: "<",
+    description: "less than",
+  },
+  {
+    name: ">=",
+    label: ">=",
+    description: "greater than or equal to",
+  },
+  {
+    name: "<=",
+    label: "<=",
+    description: "less than or equal to",
+  },
 ];
 
 // Line
@@ -54,7 +102,7 @@ export const fields = [
   {
     name: "stream",
     label: "Log",
-    inputType: "label",
+    inputType: "autocomplete",
     operators: streamOperators,
     placeholder: "$VALUE",
   },
@@ -68,7 +116,7 @@ export const fields = [
   {
     name: "label",
     label: "Label",
-    inputType: "label",
+    inputType: "autocomplete",
     operators: labelOperators,
     placeholder: "$VALUE",
   },

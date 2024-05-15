@@ -194,7 +194,7 @@ export const fields = [
   {
     name: "stream",
     label: "Log",
-    inputType: "label",
+    inputType: "autocomplete",
     operators: streamOperators,
     placeholder: "$VALUE",
   },
@@ -222,7 +222,7 @@ export const fields = [
   {
     name: "label",
     label: "Label",
-    inputType: "label",
+    inputType: "autocomplete",
     operators: labelOperators,
     placeholder: "$VALUE",
   },

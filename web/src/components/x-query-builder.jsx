@@ -19,6 +19,7 @@ import {
   CustomValueEditor,
   CustomValueSelector,
 } from "./x-query-builder-value";
+import { CustomFieldSelector } from "./x-query-builder-field";
 
 const customControlClassnames = {
   queryBuilder: "queryBuilder-branches pb-2 [&>.ruleGroup]:border-none",
@@ -27,22 +28,16 @@ const customControlClassnames = {
 
 const customControlElements = {
   actionElement: CustomActionElement,
+  dragHandle: CustomDragHandle,
+  fieldSelector: CustomFieldSelector,
+  notToggle: CustomNotToggle,
   removeGroupAction: CustomActionElementIcon,
   removeRuleAction: CustomActionElementIcon,
-  valueSelector: CustomValueSelector,
   valueEditor: CustomValueEditor,
-  notToggle: CustomNotToggle,
-  dragHandle: CustomDragHandle,
+  valueSelector: CustomValueSelector,
 };
 
 const customTranslations = {
-  addRule: {
-    label: (
-      <>
-        <Plus className="mr-2 h-4 w-4" /> Rule
-      </>
-    ),
-  },
   addGroup: {
     label: (
       <>
@@ -50,14 +45,21 @@ const customTranslations = {
       </>
     ),
   },
+  addRule: {
+    label: (
+      <>
+        <Plus className="mr-2 h-4 w-4" /> Rule
+      </>
+    ),
+  },
+  cloneRule: { label: <Copy className="h-4 w-4" /> },
+  cloneRuleGroup: { label: <Copy className="h-4 w-4" /> },
+  lockGroup: { label: <Unlock className="h-4 w-4" /> },
+  lockGroupDisabled: { label: <Lock className="h-4 w-4" /> },
+  lockRule: { label: <Unlock className="h-4 w-4" /> },
+  lockRuleDisabled: { label: <Lock className="h-4 w-4" /> },
   removeGroup: { label: <X className="h-4 w-4" /> },
   removeRule: { label: <X className="h-4 w-4" /> },
-  cloneRuleGroup: { label: <Copy className="h-4 w-4" /> },
-  cloneRule: { label: <Copy className="h-4 w-4" /> },
-  lockGroup: { label: <Unlock className="h-4 w-4" /> },
-  lockRule: { label: <Unlock className="h-4 w-4" /> },
-  lockGroupDisabled: { label: <Lock className="h-4 w-4" /> },
-  lockRuleDisabled: { label: <Lock className="h-4 w-4" /> },
   shiftActionDown: { label: <ChevronDown className="h-4 w-4" /> },
   shiftActionUp: { label: <ChevronUp className="h-4 w-4" /> },
 };
