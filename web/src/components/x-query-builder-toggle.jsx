@@ -1,7 +1,7 @@
-import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
-export const ShadcnUiNotToggle = ({
+export const CustomNotToggle = ({
   className,
   handleOnChange,
   label,
@@ -26,4 +26,4 @@ export const ShadcnUiNotToggle = ({
   );
 };
 
-ShadcnUiNotToggle.displayName = "ShadcnUiNotToggle";
+CustomNotToggle.displayName = "CustomNotToggle";

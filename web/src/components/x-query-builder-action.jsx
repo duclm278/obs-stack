@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export const ShadcnUiActionElement = ({
+export const CustomActionElement = ({
   className,
   handleOnClick,
   label,
@@ -32,9 +32,9 @@ export const ShadcnUiActionElement = ({
   </Button>
 );
 
-ShadcnUiActionElement.displayName = "ShadcnUiActionElement";
+CustomActionElement.displayName = "CustomActionElement";
 
-export const ShadcnUiActionElementIcon = ({
+export const CustomActionElementIcon = ({
   className,
   handleOnClick,
   label,
@@ -65,4 +65,4 @@ export const ShadcnUiActionElementIcon = ({
   </Button>
 );
 
-ShadcnUiActionElementIcon.displayName = "ShadcnUiActionElementIcon";
+CustomActionElementIcon.displayName = "CustomActionElementIcon";

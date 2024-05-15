@@ -9,33 +9,33 @@ import {
 } from "lucide-react";
 import { getCompatContextProvider } from "react-querybuilder";
 import {
-  ShadcnUiActionElement,
-  ShadcnUiActionElementIcon,
+  CustomActionElement,
+  CustomActionElementIcon,
 } from "./x-query-builder-action";
-import { ShadcnUiDragHandle } from "./x-query-builder-dnd";
+import { CustomDragHandle } from "./x-query-builder-dnd";
 import "./x-query-builder-styles.scss";
-import { ShadcnUiNotToggle } from "./x-query-builder-toggle";
+import { CustomNotToggle } from "./x-query-builder-toggle";
 import {
-  ShadcnUiValueEditor,
-  ShadcnUiValueSelector,
+  CustomValueEditor,
+  CustomValueSelector,
 } from "./x-query-builder-value";
 
-const shadcnUiControlClassnames = {
+const customControlClassnames = {
   queryBuilder: "queryBuilder-branches pb-2 [&>.ruleGroup]:border-none",
   body: "px-0 pt-1",
 };
 
-const shadcnUiControlElements = {
-  actionElement: ShadcnUiActionElement,
-  removeGroupAction: ShadcnUiActionElementIcon,
-  removeRuleAction: ShadcnUiActionElementIcon,
-  valueSelector: ShadcnUiValueSelector,
-  valueEditor: ShadcnUiValueEditor,
-  notToggle: ShadcnUiNotToggle,
-  dragHandle: ShadcnUiDragHandle,
+const customControlElements = {
+  actionElement: CustomActionElement,
+  removeGroupAction: CustomActionElementIcon,
+  removeRuleAction: CustomActionElementIcon,
+  valueSelector: CustomValueSelector,
+  valueEditor: CustomValueEditor,
+  notToggle: CustomNotToggle,
+  dragHandle: CustomDragHandle,
 };
 
-const shadcnUiTranslations = {
+const customTranslations = {
   addRule: {
     label: (
       <>
@@ -62,9 +62,9 @@ const shadcnUiTranslations = {
   shiftActionUp: { label: <ChevronUp className="h-4 w-4" /> },
 };
 
-export const QueryBuilderShadcnUi = getCompatContextProvider({
+export const QueryBuilderCustom = getCompatContextProvider({
   key: "shadcn/ui",
-  controlClassnames: shadcnUiControlClassnames,
-  controlElements: shadcnUiControlElements,
-  translations: shadcnUiTranslations,
+  controlClassnames: customControlClassnames,
+  controlElements: customControlElements,
+  translations: customTranslations,
 });

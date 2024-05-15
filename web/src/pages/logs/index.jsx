@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/tooltip";
 import { DateRangePicker } from "@/components/x-date-picker";
 import { dateRangePresets } from "@/components/x-date-picker-presets";
-import { QueryBuilderShadcnUi } from "@/components/x-query-builder";
+import { QueryBuilderCustom } from "@/components/x-query-builder";
 import tasks from "@/data/tasks.json";
 import { cn } from "@/lib/utils";
 import { QueryBuilderDnD } from "@react-querybuilder/dnd";
@@ -127,7 +127,7 @@ export default function PageLogs() {
 
       <div className="flex flex-1 flex-col">
         <CollapsibleContent className="mb-4 grid grid-cols-[repeat(auto-fit,minmax(min(500px,100%),1fr))] gap-x-6 gap-y-4 px-0.5">
-          <QueryBuilderShadcnUi>
+          <QueryBuilderCustom>
             <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
               <div className="flex flex-col space-y-2">
                 <Label htmlFor="query-a">Query A</Label>
@@ -155,7 +155,7 @@ export default function PageLogs() {
                 </Button>
               </div>
             </QueryBuilderDnD>
-          </QueryBuilderShadcnUi>
+          </QueryBuilderCustom>
         </CollapsibleContent>
 
         <DataTable data={tasks} columns={columns} />
