@@ -2,7 +2,7 @@ import { columns } from "@/components/columns";
 import { DataTable } from "@/components/data-table";
 import tasks from "@/data/tasks.json";
 
-export default function PageTraces() {
+export default function PageMetrics() {
   return (
     <>
       <div className="flex h-full flex-1 flex-col space-y-8">

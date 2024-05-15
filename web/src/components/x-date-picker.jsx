@@ -1,14 +1,23 @@
 // Tremor Raw Date Picker [v1.0.1]
 
 import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn, focusInput, focusRing, hasErrorInput } from "@/lib/utils";
 import { Time } from "@internationalized/date";
-import * as PopoverPrimitives from "@radix-ui/react-popover";
 import { useDateSegment, useTimeField } from "@react-aria/datepicker";
 import { useTimeFieldState } from "@react-stately/datepicker";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
-import { Calendar, Minus } from "lucide-react";
+import { Clock, Minus } from "lucide-react";
 import * as React from "react";
 import { tv } from "tailwind-variants";
 import { Calendar as CalendarPrimitive } from "./x-calendar";
@@ -127,7 +136,7 @@ TimeInput.displayName = "TimeInput";
 const triggerStyles = tv({
   base: [
     // base
-    "peer flex w-full cursor-pointer appearance-none items-center gap-x-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none transition-all sm:text-sm",
+    "peer flex w-full cursor-pointer appearance-none items-center gap-x-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none sm:text-sm",
     // background color
     "bg-white dark:bg-gray-950 ",
     // border color
@@ -157,13 +166,13 @@ const triggerStyles = tv({
 const Trigger = React.forwardRef(
   ({ className, children, placeholder, hasError, ...props }, forwardedRef) => {
     return (
-      <PopoverPrimitives.Trigger asChild>
+      <PopoverTrigger asChild>
         <Button
           ref={forwardedRef}
           className={cn(triggerStyles({ hasError }), className)}
           {...props}
         >
-          <Calendar className="size-5 shrink-0 text-gray-400 dark:text-gray-600" />
+          <Clock className="size-4 shrink-0 text-foreground" />
           <span className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-left text-gray-900 dark:text-gray-50">
             {children ? (
               children
@@ -174,7 +183,7 @@ const Trigger = React.forwardRef(
             ) : null}
           </span>
         </Button>
-      </PopoverPrimitives.Trigger>
+      </PopoverTrigger>
     );
   },
 );
@@ -187,34 +196,32 @@ Trigger.displayName = "DatePicker.Trigger";
 const CalendarPopover = React.forwardRef(
   ({ align, className, children, ...props }, forwardedRef) => {
     return (
-      <PopoverPrimitives.Portal>
-        <PopoverPrimitives.Content
-          ref={forwardedRef}
-          sideOffset={10}
-          side="bottom"
-          align={align}
-          avoidCollisions
-          onOpenAutoFocus={(e) => e.preventDefault()}
-          className={cn(
-            // base
-            "relative z-50 w-fit rounded-md border text-sm shadow-xl shadow-black/[2.5%]",
-            // widths
-            "min-w-[calc(var(--radix-select-trigger-width)-2px)] max-w-[95vw]",
-            // border color
-            "border-gray-300 dark:border-gray-800",
-            // background color
-            "bg-white dark:bg-gray-950",
-            // transition
-            "will-change-[transform,opacity]",
-            "data-[state=closed]:animate-hide",
-            "data-[state=open]:data-[side=bottom]:animate-slideDownAndFade data-[state=open]:data-[side=left]:animate-slideLeftAndFade data-[state=open]:data-[side=right]:animate-slideRightAndFade data-[state=open]:data-[side=top]:animate-slideUpAndFade",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-        </PopoverPrimitives.Content>
-      </PopoverPrimitives.Portal>
+      <PopoverContent
+        ref={forwardedRef}
+        sideOffset={5}
+        side="bottom"
+        align={align}
+        avoidCollisions
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        className={cn(
+          // base
+          "relative z-50 w-fit rounded-md border p-0 text-sm shadow-xl shadow-black/[2.5%]",
+          // widths
+          "min-w-[calc(var(--radix-select-trigger-width)-2px)] max-w-[95vw]",
+          // border color
+          "border-gray-300 dark:border-gray-800",
+          // background color
+          "bg-white dark:bg-gray-950",
+          // transition
+          "will-change-[transform,opacity]",
+          "data-[state=closed]:animate-hide",
+          "data-[state=open]:data-[side=bottom]:animate-slideDownAndFade data-[state=open]:data-[side=left]:animate-slideLeftAndFade data-[state=open]:data-[side=right]:animate-slideRightAndFade data-[state=open]:data-[side=top]:animate-slideUpAndFade",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </PopoverContent>
     );
   },
 );
@@ -504,19 +511,24 @@ const SingleDatePicker = ({
   }, [value, defaultValue]);
 
   return (
-    <PopoverPrimitives.Root open={open} onOpenChange={onOpenChange}>
-      <Trigger
-        placeholder={placeholder}
-        disabled={disabled}
-        className={className}
-        hasError={hasError}
-        aria-required={props.required || props["aria-required"]}
-        aria-invalid={props["aria-invalid"]}
-        aria-label={props["aria-label"]}
-        aria-labelledby={props["aria-labelledby"]}
-      >
-        {formattedDate}
-      </Trigger>
+    <Popover open={open} onOpenChange={onOpenChange}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Trigger
+            placeholder={placeholder}
+            disabled={disabled}
+            className={className}
+            hasError={hasError}
+            aria-required={props.required || props["aria-required"]}
+            aria-invalid={props["aria-invalid"]}
+            aria-label={props["aria-label"]}
+            aria-labelledby={props["aria-labelledby"]}
+          >
+            {formattedDate}
+          </Trigger>
+        </TooltipTrigger>
+        <TooltipContent sideOffset={6}>Time controls</TooltipContent>
+      </Tooltip>
       <CalendarPopover align={align}>
         <div className="flex">
           <div className="flex flex-col sm:flex-row sm:items-start">
@@ -584,7 +596,7 @@ const SingleDatePicker = ({
           </div>
         </div>
       </CalendarPopover>
-    </PopoverPrimitives.Root>
+    </Popover>
   );
 };
 
@@ -894,19 +906,25 @@ const RangeDatePicker = ({
   };
 
   return (
-    <PopoverPrimitives.Root open={open} onOpenChange={onOpenChange}>
-      <Trigger
-        placeholder={placeholder}
-        disabled={disabled}
-        className={className}
-        hasError={hasError}
-        aria-required={props.required || props["aria-required"]}
-        aria-invalid={props["aria-invalid"]}
-        aria-label={props["aria-label"]}
-        aria-labelledby={props["aria-labelledby"]}
-      >
-        {displayRange}
-      </Trigger>
+    <Popover open={open} onOpenChange={onOpenChange}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Trigger
+            placeholder={placeholder}
+            disabled={disabled}
+            className={className}
+            hasError={hasError}
+            aria-required={props.required || props["aria-required"]}
+            aria-invalid={props["aria-invalid"]}
+            aria-label={props["aria-label"]}
+            aria-labelledby={props["aria-labelledby"]}
+          >
+            {displayRange}
+          </Trigger>
+        </TooltipTrigger>
+        <TooltipContent sideOffset={6}>Time range controls</TooltipContent>
+      </Tooltip>
+
       <CalendarPopover align={align}>
         <div className="flex">
           <div className="flex flex-col overflow-x-auto sm:flex-row sm:items-start">
@@ -948,7 +966,7 @@ const RangeDatePicker = ({
                 {...props}
               />
               {showTimePicker && (
-                <div className="flex items-center justify-evenly gap-x-1 border-t border-gray-300 p-3 dark:border-gray-800">
+                <div className="flex items-center justify-evenly gap-x-1 overflow-x-auto border-t border-gray-300 p-3 dark:border-gray-800">
                   <div className="flex flex-1 items-center gap-x-2">
                     <span className="dark:text-gray-30 text-gray-700">
                       {translations?.start ?? "Start"}:
@@ -1009,7 +1027,7 @@ const RangeDatePicker = ({
           </div>
         </div>
       </CalendarPopover>
-    </PopoverPrimitives.Root>
+    </Popover>
   );
 };
 

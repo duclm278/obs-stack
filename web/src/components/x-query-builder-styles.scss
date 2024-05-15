@@ -1,0 +1,19 @@
+// #region Basic
+$rqb-background-color: hsl(var(--background));
+$rqb-border-color: hsl(var(--border));
+$rqb-border-style: solid;
+$rqb-border-radius: var(--radius);
+// #endregion
+
+// #region Drag-and-drop
+$rqb-dnd-hover-border-bottom-color: hsl(var(--foreground));
+$rqb-dnd-hover-copy-border-bottom-color: hsl(var(--foreground));
+$rqb-dnd-hover-border-bottom-style: dashed;
+$rqb-dnd-hover-border-bottom-width: 2px;
+// #endregion
+
+@import "react-querybuilder/dist/query-builder.scss";
+
+.dark .queryBuilder {
+  color-scheme: dark;
+}

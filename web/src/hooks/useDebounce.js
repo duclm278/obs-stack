@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import * as React from "react";
 
 // Ref: https://blog.logrocket.com/create-custom-debounce-hook-react/
 export const useDebounce = (value, milliSeconds) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+  const [debouncedValue, setDebouncedValue] = React.useState(value);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, milliSeconds);

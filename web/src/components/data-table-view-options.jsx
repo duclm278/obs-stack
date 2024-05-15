@@ -16,7 +16,7 @@ export function DataTableViewOptions({ table }) {
         <Button
           variant="outline"
           size="sm"
-          className="ml-auto hidden h-8 md:flex"
+          className="ml-auto hidden h-8 w-20 md:flex"
         >
           <MixerHorizontalIcon className="mr-2 h-4 w-4" />
           View
