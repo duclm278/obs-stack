@@ -1,4 +1,4 @@
-import userService from "../services/user";
+import userService from "../api/user";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {

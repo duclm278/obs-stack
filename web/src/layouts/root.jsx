@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/app/icons";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Toaster } from "@/components/ui/sonner";
 import { CircleUser, Menu, Search } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -25,14 +26,14 @@ export default function Root({ children }) {
             <Icons.Logo className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          <NavLink
+          {/* <NavLink
             to="/dashboard"
             className={({ isActive }) =>
               `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
             }
           >
             Dashboard
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/logs"
             className={({ isActive }) =>
@@ -86,14 +87,14 @@ export default function Root({ children }) {
                 <Icons.Logo className="h-6 w-6" />
                 <span className="sr-only">Acme Inc</span>
               </Link>
-              <NavLink
+              {/* <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
                   `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
                 }
               >
                 Dashboard
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/logs"
                 className={({ isActive }) =>
@@ -161,6 +162,7 @@ export default function Root({ children }) {
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         {children}
       </main>
+      <Toaster />
     </div>
   );
 }

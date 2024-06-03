@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
-import { UserAuthForm } from "@/components/user-auth-form";
+import { Icons } from "@/components/app/icons";
+import { UserAuthForm } from "@/components/app/user-auth-form";
 import { Link } from "react-router-dom";
 
 export default function PageSignup() {

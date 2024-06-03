@@ -1,6 +1,6 @@
-import { columns } from "@/components/columns";
-import { DataTable } from "@/components/data-table";
-import tasks from "@/data/tasks.json";
+import { columns } from "./data/columns";
+import { DataTable } from "./data/data-table";
+import tasks from "./data/tasks.json";
 
 export default function PageTraces() {
   return (
