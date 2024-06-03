@@ -54,10 +54,9 @@ export const SelectorRule = (props) => {
   };
   const out = formatCommonQuery(query, formatOpts);
 
-  r.context.metric = {};
-  r.context.metric.value = value;
-  r.context.metric.query = query;
-  r.context.metric.formatOpts = formatOpts;
+  const dataPath = JSON.stringify(r.path);
+  const metric = { value, query, formatOpts };
+  r.context[dataPath] = metric;
 
   return (
     <div
@@ -68,7 +67,7 @@ export const SelectorRule = (props) => {
       className={r.outerClassName}
       data-rule-id={r.id}
       data-level={r.path.length}
-      data-path={JSON.stringify(r.path)}
+      data-path={dataPath}
     >
       <div className="flex w-full flex-col gap-2">
         <div className="flex w-full items-center gap-2">
@@ -243,7 +242,7 @@ export const SelectorRule = (props) => {
         <div className="-mt-1 ml-5">
           <QueryBuilder
             combinators={subCombinators}
-            context={r.context}
+            context={{ dateRange: r.context?.dateRange, parent: metric }}
             controlElements={{
               actionElement: CustomActionElement,
               addGroupAction: HiddenElement,

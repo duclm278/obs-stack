@@ -9,12 +9,14 @@ export const MetricNameValueEditor = ({
   context,
   disabled,
   handleOnChange,
+  path,
   value,
 }) => {
   const [open0, setOpen0] = React.useState(false);
   const [loading0, setLoading0] = React.useState(false);
   const [options0, setOptions0] = React.useState([]);
 
+  const dataPath = JSON.stringify(path);
   const v0 = value ?? "";
 
   const getLabelValues = async (name, params) => {
@@ -38,7 +40,7 @@ export const MetricNameValueEditor = ({
     setOpen0(open);
     setOptions0([]);
     if (!open) return;
-    if (!context.metric?.formatOpts) {
+    if (!context[dataPath]?.formatOpts) {
       getLabelValues({
         start: context.dateRange?.from,
         end: context.dateRange?.to,
@@ -46,7 +48,7 @@ export const MetricNameValueEditor = ({
       return;
     }
 
-    const query = context.metric?.query;
+    const query = context[dataPath]?.query;
     if (!query) {
       getLabelValues("__name__", {
         start: context.dateRange?.from,
@@ -55,7 +57,7 @@ export const MetricNameValueEditor = ({
       return;
     }
 
-    const out = formatCommonQuery(query, context.metric?.formatOpts);
+    const out = formatCommonQuery(query, context[dataPath]?.formatOpts);
     if (!out) {
       getLabelValues("__name__", {
         start: context.dateRange?.from,

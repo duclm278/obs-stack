@@ -19,8 +19,8 @@ export const MetricLabelValueEditor = ({
   fieldData,
   handleOnChange,
   operator,
-  schema,
   path,
+  schema,
   value,
 }) => {
   const [open0, setOpen0] = React.useState(false);
@@ -67,7 +67,7 @@ export const MetricLabelValueEditor = ({
     setOpen0(open);
     setOptions0([]);
     if (!open) return;
-    if (!context.metric?.formatOpts) {
+    if (!context.parent?.formatOpts) {
       getLabels({
         start: context.dateRange?.from,
         end: context.dateRange?.to,
@@ -76,7 +76,7 @@ export const MetricLabelValueEditor = ({
     }
 
     const newQuery = structuredClone(parentGroup);
-    const name = context.metric?.value;
+    const name = context.parent?.value;
     console.log("name", name);
     if (name) {
       newQuery.rules.unshift({
@@ -90,7 +90,7 @@ export const MetricLabelValueEditor = ({
       newQuery.rules = newQuery.rules.filter((r) => r.id !== id);
     }
 
-    const out = formatCommonQuery(newQuery, context.metric.formatOpts);
+    const out = formatCommonQuery(newQuery, context.parent?.formatOpts);
     if (!out) {
       getLabels({
         start: context.dateRange?.from,
