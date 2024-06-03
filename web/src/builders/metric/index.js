@@ -17,14 +17,12 @@ export const metricLabelOperators = [
     label: "matches regex",
     defaultValue: ["", []],
     out: '{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}=~"{{ v1 | join: "|" }}"{% endif %}',
-    isMultiple: true,
   },
   {
     name: "!~",
     label: "doesn't match regex",
     defaultValue: ["", []],
     out: '{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}!~"{{ v1 | join: "|" }}"{% endif %}',
-    isMultiple: true,
   },
 ];
 

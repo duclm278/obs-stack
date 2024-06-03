@@ -17,14 +17,12 @@ export const streamOperators = [
     label: "matches regex",
     defaultValue: ["", []],
     out: '{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}=~"{{ v1 | join: "|" }}"{% endif %}',
-    isMultiple: true,
   },
   {
     name: "!~",
     label: "doesn't match regex",
     defaultValue: ["", []],
     out: '{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}!~"{{ v1 | join: "|" }}"{% endif %}',
-    isMultiple: true,
   },
 ];
 
@@ -35,42 +33,36 @@ export const lineOperators = [
     label: "contains",
     defaultValue: [[]],
     out: '|= `{{ v0 | join: "` or `" }}`',
-    isMultiple: true,
   },
   {
     name: "!=",
     label: "doesn't contain",
     defaultValue: [[]],
     out: '!= `{{ v0 | join: "` or `" }}`',
-    isMultiple: true,
   },
   {
     name: "|~ `(?i)<pattern>`",
     label: "contains case insensitive",
     defaultValue: [[]],
     out: '|= `(?i){{ v0 | join: "` or `(?i)" }}`',
-    isMultiple: true,
   },
   {
     name: "!~ `(?i)<pattern>`",
     label: "doesn't contain case insensitive",
     defaultValue: [[]],
     out: '!~ `(?i){{ v0 | join: "` or `(?i)" }}`',
-    isMultiple: true,
   },
   {
     name: "|~",
     label: "matches regex",
     defaultValue: [[]],
     out: '|~ `{{ v0 | join: "` or `" }}`',
-    isMultiple: true,
   },
   {
     name: "!~",
     label: "doesn't match regex",
     defaultValue: [[]],
     out: '!~ `{{ v0 | join: "` or `" }}`',
-    isMultiple: true,
   },
   {
     name: "|= ip(`<pattern>`)",
@@ -163,14 +155,12 @@ export const formatOperators = [
     label: "Json",
     defaultValue: [[]],
     out: '| json{% if v0.size > 0 %} {{ v0 | join: ", " }}{% endif %}',
-    isMultiple: true,
   },
   {
     name: "logfmt",
     label: "Logfmt",
     defaultValue: [[], []],
     out: '| logfmt{% if v0[0].size > 0 %} {{ v0[0] }}{% endif %}{% if v0[1].size > 0 %} {{ v0[1] }}{% endif %}{% if v1.size > 0 %} {{ v1 | join: ", " }}{% endif %}',
-    isMultiple: true,
   },
   {
     name: "regexp",
@@ -219,14 +209,12 @@ export const formatOperators = [
     label: "Drop",
     defaultValue: [[]],
     out: '| drop{% if v0.size > 0 %} {{ v0 | join: ", " }}{% endif %}',
-    isMultiple: true,
   },
   {
     name: "keep",
     label: "Keep",
     defaultValue: [[]],
     out: '| keep{% if v0.size > 0 %} {{ v0 | join: ", " }}{% endif %}',
-    isMultiple: true,
   },
 ];
 
