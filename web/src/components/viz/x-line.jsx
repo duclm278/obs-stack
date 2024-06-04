@@ -407,7 +407,8 @@ const LineChart = React.forwardRef((props, ref) => {
     categories = [],
     index,
     colors = AvailableChartColors,
-    valueFormatter = (value) => value.toString(),
+    yAxisValueFormatter = (value) => value.toString(),
+    tooltipValueFormatter = (value) => value.toString(),
     startEndOnly = false,
     showXAxis = true,
     showYAxis = true,
@@ -572,7 +573,7 @@ const LineChart = React.forwardRef((props, ref) => {
               // text fill
               "fill-gray-500 dark:fill-gray-500",
             )}
-            tickFormatter={valueFormatter}
+            tickFormatter={yAxisValueFormatter}
             allowDecimals={allowDecimals}
           >
             {yAxisLabel && (
@@ -601,7 +602,7 @@ const LineChart = React.forwardRef((props, ref) => {
                     active={active}
                     payload={payload}
                     label={label}
-                    valueFormatter={valueFormatter}
+                    valueFormatter={tooltipValueFormatter}
                     categoryColors={categoryColors}
                   />
                 )

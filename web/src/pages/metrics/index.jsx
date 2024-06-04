@@ -397,8 +397,14 @@ export default function PageMetrics() {
               data={dataFlatten}
               categories={dataCategories}
               index="date"
+              yAxisValueFormatter={(value) =>
+                new Intl.NumberFormat("en-US", {
+                  notation: "compact",
+                  compactDisplay: "short",
+                }).format(value)
+              }
               xAxisHeight={48}
-              yAxisWidth={60}
+              yAxisWidth={48}
               showAnimation
               curveType="natural"
               className="h-[555px] pb-[125px]"

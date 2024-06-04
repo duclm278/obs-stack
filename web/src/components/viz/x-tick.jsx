@@ -4,7 +4,7 @@ export const XTick = ({ x, y, payload }) => (
   <Text
     x={x}
     y={y}
-    className="text-sm"
+    className="text-xs"
     width={100}
     textAnchor="middle"
     verticalAnchor="start"
@@ -19,8 +19,8 @@ export const YTick = ({ x, y, payload }) => (
   <Text
     x={x}
     y={y}
-    className="text-sm"
-    width={64}
+    className="text-xs"
+    width={72}
     textAnchor="end"
     verticalAnchor="middle"
     breakAll

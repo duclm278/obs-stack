@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export const chartColors = {
   blue: {
     bg: "bg-blue-500",
@@ -91,15 +89,3 @@ export function hasOnlyOneValueForKey(array, keyToCheck) {
 
   return true;
 }
-
-export const useOnWindowResize = (handler) => {
-  React.useEffect(() => {
-    const handleResize = () => {
-      handler();
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [handler]);
-};
