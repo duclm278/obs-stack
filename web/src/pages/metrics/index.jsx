@@ -124,7 +124,7 @@ export default function PageMetrics() {
       setDataCategories(newData.map((d) => JSON.stringify(d.metric)));
     } catch (error) {
       const msg = error.response?.data?.message ?? error.message;
-      toast.error("Logs", {
+      toast.error("Metrics", {
         description: msg,
         action: { label: "Hide", onClick: () => {} },
       });
