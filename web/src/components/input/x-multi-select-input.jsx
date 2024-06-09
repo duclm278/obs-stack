@@ -40,9 +40,14 @@ export const MultiSelectInput = ({
     if (!query) {
       return options;
     }
-    return options.filter((o) =>
-      o.value.toLowerCase().includes(query.toLowerCase()),
-    );
+    return options.reduce((acc, cur) => {
+      if (cur.value === query) {
+        acc.unshift(cur);
+      } else if (cur.value.toLowerCase().includes(query.toLowerCase())) {
+        acc.push(cur);
+      }
+      return acc;
+    }, []);
   };
 
   const idxRef = React.useRef(0);
@@ -88,7 +93,6 @@ export const MultiSelectInput = ({
           <MultiSelectEmpty>
             {loading ? loadingText : noOptionsText}
           </MultiSelectEmpty>
-          {Array.isArray(filtered) && renderMultiSelectOptions(filtered)}
           {searchRef?.current?.value?.trim() &&
             !filtered
               ?.map((o) => o.value)
@@ -107,6 +111,7 @@ export const MultiSelectInput = ({
                 <PlusCircle className="h-4 w-4 shrink-0" />
               </MultiSelectItem>
             )}
+          {Array.isArray(filtered) && renderMultiSelectOptions(filtered)}
         </MultiSelectList>
       </MultiSelectContent>
     </MultiSelect>

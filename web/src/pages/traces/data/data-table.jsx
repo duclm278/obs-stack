@@ -18,13 +18,14 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import * as React from "react";
-import { DataTableToolbar } from "./data-table-toolbar";
 
 export function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState([]);
-  const [sorting, setSorting] = React.useState([]);
+  const [sorting, setSorting] = React.useState([
+    { id: "startTimeUnixNano", desc: true },
+  ]);
 
   const table = useReactTable({
     data,
@@ -34,6 +35,11 @@ export function DataTable({ columns, data }) {
       columnVisibility,
       rowSelection,
       columnFilters,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 100,
+      },
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -50,7 +56,6 @@ export function DataTable({ columns, data }) {
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -94,7 +99,7 @@ export function DataTable({ columns, data }) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  No traces found.
                 </TableCell>
               </TableRow>
             )}

@@ -58,19 +58,10 @@ import { toast } from "sonner";
 import { columns } from "./data/columns";
 import { DataTable } from "./data/data-table";
 import { LogLevel, getLogLevel, getLogLevelColors } from "./data/utils";
-import logqlGrammar from "./prism";
+import logqlGrammar from "./prism.js";
 import "./prism.scss";
 
-// const defaultQuery = {
-//   combinator: "query",
-//   rules: [
-//     {
-//       combinator: "stream",
-//       rules: [{ field: "stream", operator: "=", value: ["", ""] }],
-//     },
-//     { field: "line", operator: "|=", value: [[]] },
-//   ],
-// };
+const logLimit = 1000;
 const defaultQuery = {
   combinator: "query",
   rules: [
@@ -161,10 +152,7 @@ export default function PageLogs() {
       const msg = error.response?.data?.message ?? error.message;
       toast.error("Log Volume", {
         description: msg,
-        action: {
-          label: "Hide",
-          onClick: () => {},
-        },
+        action: { label: "Hide", onClick: () => {} },
       });
       setDataVolume([]);
     } finally {
@@ -188,10 +176,7 @@ export default function PageLogs() {
       const msg = error.response?.data?.message ?? error.message;
       toast.error("Logs", {
         description: msg,
-        action: {
-          label: "Hide",
-          onClick: () => {},
-        },
+        action: { label: "Hide", onClick: () => {} },
       });
       setData([]);
     } finally {
@@ -204,7 +189,6 @@ export default function PageLogs() {
       queries[0].format === "builder"
         ? formatCommonQuery(queries[0].builder, formatOpts)
         : queries[0].out;
-    const limit = 1000;
     const now = new Date();
     let s = start ?? dateRange?.from ?? new Date();
     let e = end ?? dateRange?.to ?? new Date();
@@ -213,14 +197,14 @@ export default function PageLogs() {
     const diff = differenceInMilliseconds(e, s);
     getDataVolume({
       query,
-      limit,
+      limit: logLimit,
       start: s,
       end: e,
-      interval: `${Math.ceil(diff / limit)}ms`,
+      interval: `${Math.ceil(diff / logLimit)}ms`,
     });
     getQueryRange({
       query,
-      limit,
+      limit: logLimit,
       start: s,
       end: e,
     });

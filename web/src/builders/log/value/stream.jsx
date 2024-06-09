@@ -4,6 +4,7 @@ import { MultiSelectInput } from "@/components/input/x-multi-select-input";
 import { SelectInput } from "@/components/input/x-select-input";
 import { cn } from "@/lib/utils";
 import * as React from "react";
+import { useDeepCompareEffect } from "react-use";
 
 export const StreamValueEditor = ({
   className,
@@ -28,7 +29,7 @@ export const StreamValueEditor = ({
   const v0 = convertValue(value?.[0], isMultiple0);
   const v1 = convertValue(value?.[1], isMultiple1);
 
-  React.useEffect(() => {
+  useDeepCompareEffect(() => {
     if (numValues === 0) return;
     if (numValues === 1) return;
     if (numValues === 2 && JSON.stringify(value) !== JSON.stringify([v0, v1])) {

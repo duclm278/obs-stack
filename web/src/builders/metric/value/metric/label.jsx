@@ -11,6 +11,7 @@ import {
   getQuerySelectorById,
   useQueryBuilderSelector,
 } from "react-querybuilder";
+import { useDeepCompareEffect } from "react-use";
 
 export const MetricLabelValueEditor = ({
   className,
@@ -40,7 +41,7 @@ export const MetricLabelValueEditor = ({
   const parentPath = getParentPath(path);
   const parentGroup = findPath(parentPath, query);
 
-  React.useEffect(() => {
+  useDeepCompareEffect(() => {
     if (thisOperator?.defaultValue === null) return;
     if (JSON.stringify(value) !== JSON.stringify([v0, v1])) {
       handleOnChange([v0, v1]);
@@ -77,7 +78,6 @@ export const MetricLabelValueEditor = ({
 
     const newQuery = structuredClone(parentGroup);
     const name = context.parent?.value;
-    console.log("name", name);
     if (name) {
       newQuery.rules.unshift({
         field: "metric.label",
@@ -85,6 +85,7 @@ export const MetricLabelValueEditor = ({
         value: ["__name__", name],
       });
     }
+
     const id = findPath(path, query)?.id;
     if (id) {
       newQuery.rules = newQuery.rules.filter((r) => r.id !== id);

@@ -46,7 +46,7 @@ import * as ReactDnD from "react-dnd";
 import * as ReactDndHtml5Backend from "react-dnd-html5-backend";
 import QueryBuilder from "react-querybuilder";
 import { toast } from "sonner";
-import promqlGrammar from "./prism";
+import promqlGrammar from "./prism.js";
 import "./prism.scss";
 
 const metricLimit = 7;
@@ -126,10 +126,7 @@ export default function PageMetrics() {
       const msg = error.response?.data?.message ?? error.message;
       toast.error("Logs", {
         description: msg,
-        action: {
-          label: "Hide",
-          onClick: () => {},
-        },
+        action: { label: "Hide", onClick: () => {} },
       });
       setData([]);
     } finally {
@@ -404,7 +401,7 @@ export default function PageMetrics() {
                 }).format(value)
               }
               xAxisHeight={48}
-              yAxisWidth={48}
+              yAxisWidth={60}
               showAnimation
               curveType="natural"
               className="h-[555px] pb-[125px]"

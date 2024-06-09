@@ -1,7 +1,7 @@
 import { convertValue } from "@/builders/common/value";
 import { CustomValueEditor } from "@/components/builder/x-query-builder-value";
 import { cn } from "@/lib/utils";
-import * as React from "react";
+import { useDeepCompareEffect } from "react-use";
 
 export const LabelValueEditor = ({
   className,
@@ -23,7 +23,7 @@ export const LabelValueEditor = ({
   const fieldData0 = structuredClone(fieldData);
   fieldData0.placeholder = "$LABEL";
 
-  React.useEffect(() => {
+  useDeepCompareEffect(() => {
     if (numValues === 0) return;
     if (numValues === 1) return;
     if (numValues === 2 && JSON.stringify(value) !== JSON.stringify([v0, v1])) {

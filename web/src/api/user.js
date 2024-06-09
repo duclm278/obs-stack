@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const VITE_HOST_API = import.meta.env.VITE_HOST_API;
-const baseURL = VITE_HOST_API + "/users";
+const baseURL = VITE_HOST_API + "/user";
 console.log("VITE_HOST_API", import.meta.env.VITE_HOST_API);
 
 const login = async (email, password) => {

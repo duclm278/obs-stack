@@ -1,0 +1,81 @@
+// https://github.com/grafana/grafana/blob/main/public/sass/_variables.light.generated.scss
+.prism-syntax-highlight {
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    /* color: $text-color-weak; */
+    color: rgba(36, 41, 46, 0.75);
+  }
+
+  .token.variable,
+  .token.entity {
+    /* color: $text-color; */
+    color: rgba(36, 41, 46, 1);
+  }
+
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    /* color: $query-red; */
+    color: #cf0e5b;
+  }
+
+  .token.attr-value,
+  .token.selector,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    /* color: $query-green; */
+    color: #0a764e;
+  }
+
+  .token.boolean,
+  .token.number,
+  .token.operator,
+  .token.url {
+    /* color: $query-purple; */
+    color: #fe85fc;
+  }
+
+  .token.function,
+  .token.attr-name,
+  .token.function-name,
+  .token.atrule,
+  .token.keyword,
+  .token.class-name {
+    /* color: $text-blue; */
+    color: #1f62e0;
+  }
+
+  .token.punctuation,
+  .token.regex,
+  .token.important {
+    /* color: $query-orange; */
+    color: #eb7b18;
+  }
+
+  .token.important {
+    font-weight: normal;
+  }
+
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+}

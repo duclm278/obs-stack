@@ -1,17 +1,211 @@
 // Service
-export const serviceOperators = [];
+export const serviceOperators = [
+  {
+    name: "=",
+    label: "equals",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "!=",
+    label: "doesn't equal",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name!={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "=~",
+    label: "matches regex",
+    defaultValue: [[]],
+    out: '{% if v0.size > 0 %}resource.service.name=~"{{ v0 | join: "|" }}"{% endif %}',
+  },
+  {
+    name: "!~",
+    label: "doesn't match regex",
+    defaultValue: [[]],
+    out: '{% if v0.size > 0 %}resource.service.name!~"{{ v0 | join: "|" }}"{% endif %}',
+  },
+  {
+    name: ">",
+    label: ">",
+    description: "greater than",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name>{{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "<",
+    label: "<",
+    description: "less then",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name<{{ v0 | json }}{% endif %}",
+  },
+  {
+    name: ">=",
+    label: ">=",
+    description: "greater than or equal to",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name>={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "<=",
+    label: "<=",
+    description: "less than or equal to",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}resource.service.name<={{ v0 | json }}{% endif %}",
+  },
+];
 
 // Span
-export const spanOperators = [];
+export const spanOperators = [
+  {
+    name: "=",
+    label: "equals",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "!=",
+    label: "doesn't equal",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name!={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "=~",
+    label: "matches regex",
+    defaultValue: [[]],
+    out: '{% if v0.size > 0 %}name=~"{{ v0 | join: "|" }}"{% endif %}',
+  },
+  {
+    name: "!~",
+    label: "doesn't match regex",
+    defaultValue: [[]],
+    out: '{% if v0.size > 0 %}name!~"{{ v0 | join: "|" }}"{% endif %}',
+  },
+  {
+    name: ">",
+    label: ">",
+    description: "greater than",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name>{{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "<",
+    label: "<",
+    description: "less then",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name<{{ v0 | json }}{% endif %}",
+  },
+  {
+    name: ">=",
+    label: ">=",
+    description: "greater than or equal to",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name>={{ v0 | json }}{% endif %}",
+  },
+  {
+    name: "<=",
+    label: "<=",
+    description: "less than or equal to",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}name<={{ v0 | json }}{% endif %}",
+  },
+];
 
 // Status
-export const statusOperators = [];
+export const statusOperators = [
+  {
+    name: "=",
+    label: "equals",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}status={{ v0 }}{% endif %}",
+  },
+  {
+    name: "!=",
+    label: "doesn't equal",
+    defaultValue: [""],
+    out: "{% if v0.size > 0 %}status!={{ v0 }}{% endif %}",
+  },
+];
 
 // Duration
-export const durationOperators = [];
+export const durationOperators = [
+  {
+    name: ">",
+    label: ">",
+    description: "greater than",
+    defaultValue: ["", ""],
+    out: "{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}>{{ v1 }}{% endif %}",
+  },
+  {
+    name: "<",
+    label: "<",
+    description: "less then",
+    defaultValue: ["", ""],
+    out: "{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}<{{ v1 }}{% endif %}",
+  },
+  {
+    name: ">=",
+    label: ">=",
+    description: "greater than or equal to",
+    defaultValue: ["", ""],
+    out: "{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}>={{ v1 }}{% endif %}",
+  },
+  {
+    name: "<=",
+    label: "<=",
+    description: "less than or equal to",
+    defaultValue: ["", ""],
+    out: "{% if v0.size > 0 and v1.size > 0 %}{{ v0 }}<={{ v1 }}{% endif %}",
+  },
+];
 
-// Tag
-export const tagOperators = [];
+// TODO: Tag
+export const tagOperators = [
+  {
+    name: "=",
+    label: "equals",
+    defaultValue: ["", ""],
+    out: "",
+  },
+  {
+    name: "!=",
+    label: "doesn't equal",
+    defaultValue: ["", ""],
+  },
+  {
+    name: "=~",
+    label: "matches regex",
+    defaultValue: ["", []],
+  },
+  {
+    name: "!~",
+    label: "doesn't match regex",
+    defaultValue: ["", []],
+  },
+  {
+    name: ">",
+    label: ">",
+    description: "greater than",
+    defaultValue: ["", ""],
+  },
+  {
+    name: "<",
+    label: "<",
+    description: "less then",
+    defaultValue: ["", ""],
+  },
+  {
+    name: ">=",
+    label: ">=",
+    description: "greater than or equal to",
+    defaultValue: ["", ""],
+  },
+  {
+    name: "<=",
+    label: "<=",
+    description: "less than or equal to",
+    defaultValue: ["", ""],
+  },
+];
 
 // Fields
 export const fields = [
@@ -57,9 +251,6 @@ export const combinators = [
   {
     name: "query",
     label: "QUERY",
-  },
-  {
-    name: "tags",
-    label: "Tags",
+    out: '{{ "{" }}{{ rules | join: " && " }}{{ "}" }}',
   },
 ];

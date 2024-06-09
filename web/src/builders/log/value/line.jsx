@@ -3,6 +3,7 @@ import { CustomValueEditor } from "@/components/builder/x-query-builder-value";
 import { MultiSelectInput } from "@/components/input/x-multi-select-input";
 import { cn } from "@/lib/utils";
 import * as React from "react";
+import { useDeepCompareEffect } from "react-use";
 
 export const LineValueEditor = ({
   className,
@@ -15,14 +16,14 @@ export const LineValueEditor = ({
   value,
   ...extraProps
 }) => {
-  const [open0, setOpen1] = React.useState(false);
+  const [open0, setOpen0] = React.useState(false);
 
   const thisOperator = fieldData.operators.find((o) => o.name === operator);
   const numValues = thisOperator?.defaultValue?.length || 0;
   const isMultiple0 = Array.isArray(thisOperator?.defaultValue?.[0]);
   const v0 = convertValue(value?.[0], isMultiple0);
 
-  React.useEffect(() => {
+  useDeepCompareEffect(() => {
     if (numValues === 0) return;
     if (numValues === 1 && JSON.stringify(value) !== JSON.stringify([v0])) {
       handleOnChange([v0]);
@@ -41,7 +42,7 @@ export const LineValueEditor = ({
           className={cn("order-1", className)}
           disabled={disabled}
           noOptionsText="Search or create values."
-          onOpenChange={setOpen1}
+          onOpenChange={setOpen0}
           onValueChange={(v) => {
             handleOnChange([v]);
           }}

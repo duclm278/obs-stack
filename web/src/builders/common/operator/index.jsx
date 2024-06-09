@@ -3,7 +3,10 @@ import { cn } from "@/lib/utils";
 
 export const CommonOperatorSelector = ({ className, ...extraProps }) => {
   return (
-    <CustomValueSelector {...extraProps} className={cn("order-1", className)} />
+    <CustomValueSelector
+      {...extraProps}
+      className={cn("order-1 min-w-16", className)}
+    />
   );
 };
 

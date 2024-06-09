@@ -1,0 +1,23 @@
+.ttc-wrapper {
+  overflow: auto;
+  font-family: "Inter";
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  .timeline-span {
+    &:hover {
+      background: hsl(var(--accent));
+    }
+
+    &.selected-span {
+      background: hsl(var(--accent));
+    }
+
+    &.insignificant-span {
+      opacity: 0.3;
+    }
+
+    &.erroneous-span {
+      background: rgba(255, 0, 0, 0.2);
+    }
+  }
+}

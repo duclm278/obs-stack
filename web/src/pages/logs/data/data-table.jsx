@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import {
   flexRender,
   getCoreRowModel,
@@ -19,8 +20,6 @@ import {
 } from "@tanstack/react-table";
 import * as React from "react";
 import { DataTableToolbar } from "./data-table-toolbar";
-import { LogLevel, getLogLevel, getLogLevelStyles } from "./utils";
-import { cn } from "@/lib/utils";
 
 export function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = React.useState({});

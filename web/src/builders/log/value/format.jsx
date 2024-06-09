@@ -3,6 +3,7 @@ import { CustomValueEditor } from "@/components/builder/x-query-builder-value";
 import { MultiSelectInput } from "@/components/input/x-multi-select-input";
 import { cn } from "@/lib/utils";
 import * as React from "react";
+import { useDeepCompareEffect } from "react-use";
 
 export const FormatValueEditor = ({
   className,
@@ -27,7 +28,7 @@ export const FormatValueEditor = ({
   const fieldData0 = structuredClone(fieldData);
   const fieldData1 = structuredClone(fieldData);
 
-  React.useEffect(() => {
+  useDeepCompareEffect(() => {
     if (numValues === 0) return;
     if (numValues === 1 && JSON.stringify(value) !== JSON.stringify([v0])) {
       handleOnChange([v0]);
