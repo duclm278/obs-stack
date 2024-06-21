@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: obs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data: {}
