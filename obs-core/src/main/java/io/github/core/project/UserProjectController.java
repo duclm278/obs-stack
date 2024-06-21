@@ -1,6 +1,6 @@
 package io.github.core.project;
 
-import io.github.core.scope.ProjectScope;
+import io.github.core.user.ProjectScope;
 import io.github.core.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,9 +1,9 @@
 package io.github.core.security;
 
 import io.github.core.project.Project;
-import io.github.core.scope.Role;
 import io.github.core.token.ApiToken;
 import io.github.core.token.ApiTokenService;
+import io.github.core.user.Role;
 import io.github.core.user.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

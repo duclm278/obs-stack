@@ -2,7 +2,6 @@ package io.github.core.user;
 
 import io.github.core.project.Project;
 import io.github.core.project.ProjectService;
-import io.github.core.scope.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

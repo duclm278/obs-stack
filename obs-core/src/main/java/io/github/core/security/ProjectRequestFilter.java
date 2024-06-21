@@ -1,8 +1,7 @@
 package io.github.core.security;
 
-import io.github.core.scope.ProjectScope;
-import io.github.core.scope.Role;
-import io.github.core.scope.RoleScope;
+import io.github.core.user.ProjectScope;
+import io.github.core.user.Role;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package io.github.core;
 
-import io.github.core.scope.Role;
+import io.github.core.user.Role;
 import io.github.core.user.UserCreateRequest;
 import io.github.core.user.UserService;
 import org.springframework.beans.factory.annotation.Value;

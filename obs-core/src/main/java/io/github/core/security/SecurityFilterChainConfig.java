@@ -11,10 +11,9 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static io.github.core.scope.Role.*;
-import static io.github.core.scope.RoleScope.USER_READ;
+import static io.github.core.user.Role.*;
+import static io.github.core.user.RoleScope.USER_READ;
 import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity

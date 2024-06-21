@@ -1,4 +1,4 @@
-package io.github.core.scope;
+package io.github.core.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static io.github.core.scope.RoleScope.*;
+import static io.github.core.user.RoleScope.*;
 
 @Getter
 @RequiredArgsConstructor

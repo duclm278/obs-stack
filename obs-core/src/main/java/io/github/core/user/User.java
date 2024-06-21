@@ -3,8 +3,6 @@ package io.github.core.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.core.project.Project;
-import io.github.core.scope.ProjectScope;
-import io.github.core.scope.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

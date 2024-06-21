@@ -1,7 +1,7 @@
 package io.github.core.auth;
 
-import io.github.core.scope.Role;
 import io.github.core.token.JwtService;
+import io.github.core.user.Role;
 import io.github.core.user.User;
 import io.github.core.user.UserCreateRequest;
 import io.github.core.user.UserService;

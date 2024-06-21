@@ -1,8 +1,11 @@
-package io.github.core.workflow;
+package io.github.core.flow;
 
 import io.github.core.project.Project;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -12,12 +15,12 @@ import java.util.UUID;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(schema = "public", name = "workflow")
+@Table(schema = "public", name = "flow")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Workflow {
+public class Flow {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

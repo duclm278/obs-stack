@@ -1,6 +1,5 @@
 package io.github.core.user;
 
-import io.github.core.scope.Role;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
