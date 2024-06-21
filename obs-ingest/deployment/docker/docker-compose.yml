@@ -1,0 +1,100 @@
+services:
+  redis-node-0:
+    image: docker.io/bitnami/redis-cluster
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+    ports:
+      - 6380:6379
+    # volumes:
+    #   - redis-cluster_data-0:/bitnami/redis/data
+
+  redis-node-1:
+    image: docker.io/bitnami/redis-cluster
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+    ports:
+      - 6381:6379
+    # volumes:
+    #   - redis-cluster_data-1:/bitnami/redis/data
+
+  redis-node-2:
+    image: docker.io/bitnami/redis-cluster
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+    ports:
+      - 6382:6379
+    # volumes:
+    #   - redis-cluster_data-2:/bitnami/redis/data
+
+  redis-node-3:
+    image: docker.io/bitnami/redis-cluster
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+    ports:
+      - 6383:6379
+    # volumes:
+    #   - redis-cluster_data-3:/bitnami/redis/data
+
+  redis-node-4:
+    image: docker.io/bitnami/redis-cluster
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+    ports:
+      - 6384:6379
+    # volumes:
+    #   - redis-cluster_data-4:/bitnami/redis/data
+
+  redis-node-5:
+    image: docker.io/bitnami/redis-cluster
+    depends_on:
+      - redis-node-0
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+      - redis-node-4
+    environment:
+      - "REDIS_PASSWORD=bitnami"
+      - "REDISCLI_AUTH=bitnami"
+      - "REDIS_CLUSTER_REPLICAS=1"
+      - "REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5"
+      - "REDIS_CLUSTER_CREATOR=yes"
+    ports:
+      - 6385:6379
+    # volumes:
+    #   - redis-cluster_data-5:/bitnami/redis/data
+
+  redisinsight:
+    image: redislabs/redisinsight
+    ports:
+      - 5540:5540
+
+  prometheus:
+    image: prom/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-remote-write-receiver"
+    network_mode: host
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+      # - prom_data:/prometheus
+
+  otelcol:
+    image: otel/opentelemetry-collector-contrib
+    network_mode: host
+    ports:
+      - 1888:1888 # pprof extension
+      - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter metrics
+      - 13133:13133 # health_check extension
+      - 4317:4317 # OTLP gRPC receiver
+      - 4318:4318 # OTLP http receiver
+      - 55679:55679 # zpages extension
+    volumes:
+      - ./otelcol/config.yaml:/etc/otelcol-contrib/config.yaml
