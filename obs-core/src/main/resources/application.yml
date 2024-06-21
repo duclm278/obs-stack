@@ -24,6 +24,13 @@ jwt:
   secret-key: ${JWT_SECRET_KEY:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
   expiration: ${JWT_EXPIRATION:3600000}
 
+log:
+   query-host: ${LOG_QUERY_HOST:localhost:3100}
+trace:
+   query-host: ${TRACE_QUERY_HOST:localhost:3200}
+metric:
+   query-host: ${METRIC_QUERY_HOST:localhost:9009}
+
 server:
   error:
     include-stacktrace: never

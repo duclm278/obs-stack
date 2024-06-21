@@ -36,6 +36,14 @@ public class ApiToken {
     @Column(nullable = false)
     private String hint;
 
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean isEnabled = true;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean isMultiTenant = false;
+
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;

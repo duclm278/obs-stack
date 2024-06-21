@@ -62,16 +62,13 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     @JsonManagedReference
-    @EqualsAndHashCode.Exclude
     @Builder.Default
     private Set<Project> projects = new HashSet<>();
 
     @CreatedDate
-    @EqualsAndHashCode.Exclude
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @EqualsAndHashCode.Exclude
     private LocalDateTime updatedAt;
 
     public void addProject(Project project) {

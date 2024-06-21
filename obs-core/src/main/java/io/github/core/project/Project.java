@@ -39,15 +39,12 @@ public class Project {
             mappedBy = "projects"
     )
     @JsonBackReference
-    @EqualsAndHashCode.Exclude
     private Set<User> users = new HashSet<>();
 
     @CreatedDate
-    @EqualsAndHashCode.Exclude
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @EqualsAndHashCode.Exclude
     private LocalDateTime updatedAt;
 
     @PreRemove
