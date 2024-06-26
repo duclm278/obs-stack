@@ -2,9 +2,12 @@ spring:
   application:
     name: core
   datasource:
-    url: jdbc:postgresql://localhost:5432/obs
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/obs}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -17,6 +20,14 @@ admin:
   username: ${OBS_ADMIN_USERNAME:admin}
   password: ${OBS_ADMIN_PASSWORD:admin}
 
+airflow:
+  host: ${AIRFLOW_HOST:localhost:8282}
+  username: ${AIRFLOW_USERNAME:airflow}
+  password: ${AIRFLOW_PASSWORD:airflow}
+  mode: ${AIRFLOW_MODE:docker}
+  docker:
+    url: ${AIRFLOW_DOCKER_URL:tcp://docker-socket-proxy:2375}
+
 crc:
   secret-key: ${CRC_SECRET_KEY:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 
@@ -25,11 +36,13 @@ jwt:
   expiration: ${JWT_EXPIRATION:3600000}
 
 log:
-   query-host: ${LOG_QUERY_HOST:localhost:3100}
+   host: ${LOG_HOST:localhost:3100}
+
 trace:
-   query-host: ${TRACE_QUERY_HOST:localhost:3200}
+   host: ${TRACE_HOST:localhost:3200}
+
 metric:
-   query-host: ${METRIC_QUERY_HOST:localhost:9009}
+   host: ${METRIC_HOST:localhost:9009}
 
 server:
   error:

@@ -1,7 +1,5 @@
-package io.github.core.token;
+package io.github.core.environment;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.core.project.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,33 +14,24 @@ import java.util.UUID;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(schema = "public", name = "api_token")
+@Table(schema = "public", name = "environment")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiToken {
+public class Environment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
+    @Column
+    private String description;
+
     @Column(nullable = false, unique = true)
-    @JsonIgnore
-    private String hashedValue;
-
-    @Column(nullable = false)
-    private String hint;
-
-    @Column(nullable = false)
-    @Builder.Default
-    private boolean enabled = true;
-
-    @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    private String image;
 
     @CreatedDate
     private LocalDateTime createdAt;

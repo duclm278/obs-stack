@@ -17,11 +17,9 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
 
     public Project create(ProjectCreateRequest projectCreateRequest) {
-        String name = projectCreateRequest.getName();
-        String description = projectCreateRequest.getDescription();
         Project project = Project.builder()
-                .name(name)
-                .description(description)
+                .name(projectCreateRequest.getName())
+                .description(projectCreateRequest.getDescription())
                 .build();
         return projectRepository.save(project);
     }
@@ -47,7 +45,7 @@ public class ProjectService {
     }
 
     public Page<Project> findAllByUserId(UUID userId, Pageable pageable) {
-        return projectRepository.findAllByUsers_Id(userId, pageable);
+        return projectRepository.findByUsersId(userId, pageable);
     }
 
     public Project updateById(UUID id, ProjectUpdateRequest projectUpdateRequest) {

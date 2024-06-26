@@ -23,9 +23,9 @@ public class AuthenticationService {
     private final PasswordEncoder bCryptPasswordEncoder;
     private final JwtService jwtService;
 
-    public User signup(SignupRequest body) {
-        String username = body.getUsername();
-        String password = body.getPassword();
+    public User signup(SignupRequest signupRequest) {
+        String username = signupRequest.getUsername();
+        String password = signupRequest.getPassword();
         UserCreateRequest userCreateRequest = UserCreateRequest.builder()
                 .username(username)
                 .password(password)
@@ -34,10 +34,10 @@ public class AuthenticationService {
         return userService.create(userCreateRequest);
     }
 
-    public String login(LoginRequest body) {
-        String username = body.getUsername();
+    public String login(LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
         User user = userService.findByUsername(username);
-        String password = body.getPassword();
+        String password = loginRequest.getPassword();
         String hashedPassword = user.getHashedPassword();
         if (!bCryptPasswordEncoder.matches(password, hashedPassword)) {
             throw new ResponseStatusException(UNAUTHORIZED, "Invalid credentials");

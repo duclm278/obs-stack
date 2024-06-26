@@ -22,8 +22,8 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RequestMapping("/api/v1/logs")
 @RequiredArgsConstructor
 public class LogV1Controller {
-    @Value("${log.query-host}")
-    private String logQueryHost;
+    @Value("${log.host}")
+    private String logHost;
 
     @GetMapping("**")
     public void query(
@@ -36,7 +36,7 @@ public class LogV1Controller {
         }
         String currentPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         String matchedPath = currentPath.substring("/api/v1/logs".length());
-        String target = "http://" + logQueryHost + "/loki/api/v1";
+        String target = "http://" + logHost + "/loki/api/v1";
         URI uri = URI.create(target + matchedPath + "?" + request.getQueryString());
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)

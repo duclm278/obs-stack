@@ -22,8 +22,8 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RequestMapping("/api/v2/traces")
 @RequiredArgsConstructor
 public class TraceV2Controller {
-    @Value("${trace.query-host}")
-    private String traceQueryHost;
+    @Value("${trace.host}")
+    private String traceHost;
 
     @GetMapping("**")
     public void query(
@@ -36,7 +36,7 @@ public class TraceV2Controller {
         }
         String currentPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         String matchedPath = currentPath.substring("/api/v2/traces".length());
-        String target = "http://" + traceQueryHost + "/api/v2";
+        String target = "http://" + traceHost + "/api/v2";
         URI uri = URI.create(target + matchedPath + "?" + request.getQueryString());
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,9 +17,9 @@ import java.util.UUID;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestController
-@RequestMapping("/api/v1/admin/api-tokens")
+@RequestMapping("/api/v1/api-tokens")
 @RequiredArgsConstructor
-public class AdminApiTokenController {
+public class ApiTokenController {
     private final ApiTokenService apiTokenService;
 
     @GetMapping("me")
@@ -35,7 +36,7 @@ public class AdminApiTokenController {
 
     @PostMapping
     public ResponseEntity<String> create(
-            @RequestHeader("X-ProjectID") UUID projectId,
+            @NotNull @RequestHeader("X-ProjectID") UUID projectId,
             @Valid @RequestBody ApiTokenCreateRequest apiTokenCreateRequest
     ) {
         String apiTokenValue = apiTokenService.createToken(projectId, apiTokenCreateRequest);
@@ -43,20 +44,29 @@ public class AdminApiTokenController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ApiToken> findById(@PathVariable UUID id) {
-        ApiToken apiToken = apiTokenService.findById(id);
+    public ResponseEntity<ApiToken> findById(
+            @NotNull @RequestHeader("X-ProjectID") UUID projectId,
+            @PathVariable UUID id
+    ) {
+        ApiToken apiToken = apiTokenService.findById(projectId, id);
         return ResponseEntity.ok(apiToken);
     }
 
     @GetMapping
-    public ResponseEntity<Page<ApiToken>> findAll(Pageable pageable) {
-        Page<ApiToken> apiTokens = apiTokenService.findAll(pageable);
-        return ResponseEntity.ok(apiTokens);
+    public PagedModel<ApiToken> findByProjectId(
+            @NotNull @RequestHeader("X-ProjectID") UUID projectId,
+            Pageable pageable
+    ) {
+        Page<ApiToken> apiTokenPage = apiTokenService.findByProjectId(projectId, pageable);
+        return new PagedModel<>(apiTokenPage);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
-        apiTokenService.deleteById(id);
+    public ResponseEntity<Void> deleteById(
+            @NotNull @RequestHeader("X-ProjectID") UUID projectId,
+            @PathVariable UUID id
+    ) {
+        apiTokenService.deleteById(projectId, id);
         return ResponseEntity.noContent().build();
     }
 }

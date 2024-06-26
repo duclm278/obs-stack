@@ -17,17 +17,17 @@ public class AuthenticationController {
 
     @PostMapping("signup")
     public ResponseEntity<User> signup(
-            @Valid @RequestBody SignupRequest body
+            @Valid @RequestBody SignupRequest signupRequest
     ) {
-        User user = authenticationService.signup(body);
+        User user = authenticationService.signup(signupRequest);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("login")
     public ResponseEntity<String> login(
-            @Valid @RequestBody LoginRequest body
+            @Valid @RequestBody LoginRequest loginRequest
     ) {
-        String token = authenticationService.login(body);
+        String token = authenticationService.login(loginRequest);
         return ResponseEntity.ok(token);
     }
 }

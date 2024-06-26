@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static io.github.core.user.Role.*;
 import static io.github.core.user.RoleScope.USER_READ;
-import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
@@ -42,8 +42,8 @@ public class SecurityFilterChainConfig {
                         authorizeHttpRequests
                                 .requestMatchers("/error").permitAll()
                                 .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/admin/**").hasRole(
-                                        ADMIN.name()
+                                .requestMatchers("/api/v1/users/me").hasAnyRole(
+                                        USER.name(), ADMIN.name()
                                 )
                                 .requestMatchers("/api/v1/api-tokens/me").hasRole(
                                         AGENT.name()
@@ -51,8 +51,20 @@ public class SecurityFilterChainConfig {
                                 .requestMatchers("/api/v1/ingest").hasRole(
                                         AGENT.name()
                                 )
-                                .requestMatchers(GET, "/api/v1/**").hasAnyAuthority(
+                                .requestMatchers(GET, "/api/v1/**").hasAuthority(
                                         USER_READ.toString()
+                                )
+                                .requestMatchers(POST, "/api/v1/projects/**").hasRole(
+                                        ADMIN.name()
+                                )
+                                .requestMatchers(DELETE, "/api/v1/projects/**").hasRole(
+                                        ADMIN.name()
+                                )
+                                .requestMatchers("/api/v1/users/**").hasRole(
+                                        ADMIN.name()
+                                )
+                                .requestMatchers("/api/v1/environments/**").hasRole(
+                                        ADMIN.name()
                                 )
                                 .requestMatchers("/api/v1/**").hasAnyRole(
                                         USER.name(), ADMIN.name()

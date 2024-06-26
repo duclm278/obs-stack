@@ -1,7 +1,6 @@
-package io.github.core.token;
+package io.github.core.prediction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.core.project.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,33 +15,25 @@ import java.util.UUID;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(schema = "public", name = "api_token")
+@Table(schema = "public", name = "prediction")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiToken {
+public class Prediction {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private String name;
+    private LocalDateTime timestamp;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private double value;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private String hashedValue;
-
-    @Column(nullable = false)
-    private String hint;
-
-    @Column(nullable = false)
-    @Builder.Default
-    private boolean enabled = true;
-
-    @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    private Forecast forecast;
 
     @CreatedDate
     private LocalDateTime createdAt;

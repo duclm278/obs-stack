@@ -22,8 +22,8 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RequestMapping("/api/v1/metrics")
 @RequiredArgsConstructor
 public class MetricV1Controller {
-    @Value("${metric.query-host}")
-    private String metricQueryHost;
+    @Value("${metric.host}")
+    private String metricHost;
 
     @GetMapping("**")
     public void query(
@@ -36,7 +36,7 @@ public class MetricV1Controller {
         }
         String currentPath = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         String matchedPath = currentPath.substring("/api/v1/metrics".length());
-        String target = "http://" + metricQueryHost + "/prometheus/api/v1";
+        String target = "http://" + metricHost + "/prometheus/api/v1";
         URI uri = URI.create(target + matchedPath + "?" + request.getQueryString());
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)

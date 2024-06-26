@@ -11,4 +11,8 @@ import lombok.extern.jackson.Jacksonized;
 public class ApiTokenCreateRequest {
     @NotNull
     String name;
+    @Builder.Default
+    boolean enabled = true;
+    @Builder.Default
+    private boolean multiTenant = false;
 }

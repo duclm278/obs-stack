@@ -26,6 +26,9 @@ public class CoreApplication {
             String adminPassword
     ) {
         return args -> {
+            if (userService.existsByUsername(adminUsername)) {
+                return;
+            }
             UserCreateRequest userCreateRequest = UserCreateRequest.builder()
                     .username(adminUsername)
                     .password(adminPassword)

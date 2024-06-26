@@ -29,12 +29,16 @@ public class ApiTokenService {
     @Value("${crc.secret-key}")
     private String crcSecretKey;
 
-    public ApiToken findById(UUID id) {
+    public ApiToken findById(UUID projectId, UUID id) {
         Optional<ApiToken> optionalApiToken = apiTokenRepository.findById(id);
         if (optionalApiToken.isEmpty()) {
             throw new ResponseStatusException(NOT_FOUND, "API token not found");
         }
-        return optionalApiToken.get();
+        ApiToken apiToken = optionalApiToken.get();
+        if (!apiToken.getProject().getId().equals(projectId)) {
+            throw new ResponseStatusException(NOT_FOUND, "API token not found");
+        }
+        return apiToken;
     }
 
     public ApiToken findByHashedValue(String hashedValue) {
@@ -47,10 +51,6 @@ public class ApiTokenService {
 
     public Page<ApiToken> findByProjectId(UUID projectId, Pageable pageable) {
         return apiTokenRepository.findByProjectId(projectId, pageable);
-    }
-
-    public Page<ApiToken> findAll(Pageable pageable) {
-        return apiTokenRepository.findAll(pageable);
     }
 
     public String createToken(UUID projectId, ApiTokenCreateRequest apiTokenCreateRequest) {
@@ -70,14 +70,14 @@ public class ApiTokenService {
         crc32.update(randomString.getBytes());
         long crc32Value = crc32.getValue();
 
-        String name = apiTokenCreateRequest.getName();
         String apiTokenValue = PREFIX + "_" + randomString + "_" + crc32Value;
         String apiTokenHashedValue = hashToken(apiTokenValue);
         String apiTokenHint = String.format("%04d", crc32Value % 10000);
         ApiToken apiToken = ApiToken.builder()
-                .name(name)
+                .name(apiTokenCreateRequest.getName())
                 .hashedValue(apiTokenHashedValue)
                 .hint(apiTokenHint)
+                .enabled(apiTokenCreateRequest.isEnabled())
                 .project(project)
                 .build();
 
@@ -85,8 +85,12 @@ public class ApiTokenService {
         return apiTokenValue;
     }
 
-    public void deleteById(UUID id) {
-        if (!apiTokenRepository.existsById(id)) {
+    public void deleteById(UUID projectId, UUID id) {
+        Optional<ApiToken> optionalApiToken = apiTokenRepository.findById(id);
+        if (optionalApiToken.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "API token not found");
+        }
+        if (!optionalApiToken.get().getProject().getId().equals(projectId)) {
             throw new ResponseStatusException(NOT_FOUND, "API token not found");
         }
         apiTokenRepository.deleteById(id);

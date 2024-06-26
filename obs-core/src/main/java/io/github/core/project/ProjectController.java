@@ -2,6 +2,7 @@ package io.github.core.project;
 
 import io.github.core.user.ProjectScope;
 import io.github.core.user.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +21,16 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RestController
 @RequestMapping("/api/v1/projects")
 @RequiredArgsConstructor
-public class UserProjectController {
+public class ProjectController {
     private final ProjectService projectService;
+
+    @PostMapping
+    public ResponseEntity<Project> create(
+            @Valid @RequestBody ProjectCreateRequest projectCreateRequest
+    ) {
+        Project project = projectService.create(projectCreateRequest);
+        return ResponseEntity.ok(project);
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<Project> findById(@PathVariable UUID id) {
@@ -57,5 +66,17 @@ public class UserProjectController {
         }
         Project project = projectService.updateById(id, projectUpdateRequest);
         return ResponseEntity.ok(project);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
+        ProjectScope projectScope = new ProjectScope(id);
+        SimpleGrantedAuthority projectAuthority = new SimpleGrantedAuthority(projectScope.toString());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!authentication.getAuthorities().contains(projectAuthority)) {
+            throw new ResponseStatusException(NOT_FOUND, "Project not found");
+        }
+        projectService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -61,6 +61,10 @@ public class UserService {
         return optionalUser.get();
     }
 
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
     public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
@@ -119,10 +123,10 @@ public class UserService {
         User user = optionalUser.get();
         UUID projectId = userLeaveRequest.getProjectId();
         if (projectId != null) {
-            Project project = projectService.getReferenceById(projectId);
             if (!projectService.existsById(projectId)) {
                 throw new ResponseStatusException(NOT_FOUND, "Project not found");
             }
+            Project project = projectService.getReferenceById(projectId);
             user.removeProject(project);
         }
         userRepository.save(user);

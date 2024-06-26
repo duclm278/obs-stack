@@ -1,4 +1,4 @@
-package io.github.core.project;
+package io.github.core.prediction;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<Project, UUID> {
-    Page<Project> findByUsersId(UUID userId, Pageable pageable);
+public interface ForecastRepository extends JpaRepository<Forecast, UUID> {
+    Page<Forecast> findByProjectId(UUID projectId, Pageable pageable);
 }
