@@ -1,12 +1,10 @@
-package io.github.core.prediction;
+package io.github.core.forecast;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder

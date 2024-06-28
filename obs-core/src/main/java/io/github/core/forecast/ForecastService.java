@@ -1,4 +1,4 @@
-package io.github.core.prediction;
+package io.github.core.forecast;
 
 import io.github.core.flow.Flow;
 import io.github.core.flow.FlowService;

@@ -1,4 +1,4 @@
-package io.github.core.prediction;
+package io.github.core.forecast;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -14,10 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -49,6 +46,7 @@ public class User implements UserDetails {
     @EqualsAndHashCode.Include
     @Builder.Default
     private Role role = Role.USER;
+
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,

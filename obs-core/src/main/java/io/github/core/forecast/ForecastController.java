@@ -1,4 +1,4 @@
-package io.github.core.prediction;
+package io.github.core.forecast;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package io.github.core.prediction;
+package io.github.core.forecast;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
