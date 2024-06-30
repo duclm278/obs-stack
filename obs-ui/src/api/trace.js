@@ -3,7 +3,7 @@ import axios from "axios";
 // const VITE_HOST_API = import.meta.env.VITE_HOST_API;
 // const baseURL = VITE_HOST_API + "/user";
 // console.log("VITE_HOST_API", import.meta.env.VITE_HOST_API);
-const baseV1 = "/api/v1/trace";
+const baseV1 = "/api/v1/traces";
 const instanceV1 = axios.create({
   baseURL: baseV1,
   headers: {
@@ -11,7 +11,7 @@ const instanceV1 = axios.create({
   },
 });
 
-const baseV2 = "/api/v2/trace";
+const baseV2 = "/api/v2/traces";
 const instanceV2 = axios.create({
   baseURL: baseV2,
   headers: {

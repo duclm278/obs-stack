@@ -28,7 +28,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} go build -a -o pr
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /
-COPY --from=builder /workspace/proxy .
+COPY --from=builder /workspace/obs-ingest .
 USER 65532:65532
 
-ENTRYPOINT ["/proxy"]
+ENTRYPOINT ["/obs-ingest"]

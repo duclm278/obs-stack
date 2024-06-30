@@ -2,17 +2,16 @@ import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import Root from "./layouts/root";
 import Page404 from "./pages/404";
 import PageDashboard from "./pages/dashboard";
-import PageHome from "./pages/home";
 import PageLogin from "./pages/login";
 import PageLogout from "./pages/logout";
 import PageLogs from "./pages/logs";
 import PageMetrics from "./pages/metrics";
+import PageProjects from "./pages/projects";
 import PageSignup from "./pages/signup";
 import PageTraces from "./pages/traces";
 import PageWorkflows from "./pages/workflows";
 import PageAlert from "./pages/workflows/alert";
 import PageScale from "./pages/workflows/scale";
-import PageProjects from "./pages/projects";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +21,7 @@ const router = createBrowserRouter([
       </Root>
     ),
     children: [
-      { index: true, element: <PageHome /> },
+      { index: true, element: <Navigate to="/logs" replace /> },
       { path: "projects", element: <PageProjects /> },
       { path: "dashboard", element: <PageDashboard /> },
       { path: "logs", element: <PageLogs /> },

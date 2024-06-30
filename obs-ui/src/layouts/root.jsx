@@ -1,4 +1,5 @@
 import { Icons } from "@/components/app/icons";
+import ProjectSwitcher from "@/components/app/project-switcher";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,14 +27,7 @@ export default function Root({ children }) {
             <Icons.Logo className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
-          {/* <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
-            }
-          >
-            Dashboard
-          </NavLink> */}
+          <ProjectSwitcher className="flex-1" />
           <NavLink
             to="/logs"
             className={({ isActive }) =>
@@ -58,14 +52,6 @@ export default function Root({ children }) {
           >
             Traces
           </NavLink>
-          <NavLink
-            to="/workflows"
-            className={({ isActive }) =>
-              `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
-            }
-          >
-            Workflows
-          </NavLink>
         </nav>
         <Sheet>
           <SheetTrigger asChild>
@@ -87,14 +73,6 @@ export default function Root({ children }) {
                 <Icons.Logo className="h-6 w-6" />
                 <span className="sr-only">Acme Inc</span>
               </Link>
-              {/* <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
-                }
-              >
-                Dashboard
-              </NavLink> */}
               <NavLink
                 to="/logs"
                 className={({ isActive }) =>
@@ -118,14 +96,6 @@ export default function Root({ children }) {
                 }
               >
                 Traces
-              </NavLink>
-              <NavLink
-                to="/workflows"
-                className={({ isActive }) =>
-                  `transition-colors hover:text-foreground ${isActive ? "text-foreground" : "text-muted-foreground"}`
-                }
-              >
-                Workflows
               </NavLink>
             </nav>
           </SheetContent>
