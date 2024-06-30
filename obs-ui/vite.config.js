@@ -13,4 +13,24 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      "/api/v1/logs": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+      "/api/v1/metrics": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+      "/api/v1/traces": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+      "/api/v2/traces": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+    },
+  },
 });
