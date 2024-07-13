@@ -2,7 +2,6 @@ package io.github.core.flow;
 
 import com.fasterxml.jackson.annotation.*;
 import io.github.core.environment.Environment;
-import io.github.core.forecast.Prediction;
 import io.github.core.project.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,8 +13,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity

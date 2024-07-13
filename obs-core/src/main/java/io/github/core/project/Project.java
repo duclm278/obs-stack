@@ -39,6 +39,7 @@ public class Project {
             mappedBy = "projects"
     )
     @JsonBackReference
+    @Builder.Default
     private Set<User> users = new HashSet<>();
 
     @CreatedDate

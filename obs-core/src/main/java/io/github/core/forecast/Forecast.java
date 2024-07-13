@@ -33,6 +33,7 @@ public class Forecast {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @Builder.Default
     private List<Prediction> predictions = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
