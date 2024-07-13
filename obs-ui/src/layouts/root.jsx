@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Toaster } from "@/components/ui/sonner";
 import { CircleUser, Menu, Search } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -124,7 +123,9 @@ export default function Root({ children }) {
               <DropdownMenuItem>Help</DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <Link to="/logout">
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -132,7 +133,6 @@ export default function Root({ children }) {
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         {children}
       </main>
-      <Toaster />
     </div>
   );
 }

@@ -1,8 +1,6 @@
 import axios from "axios";
+import interceptors from "./interceptors";
 
-// const VITE_HOST_API = import.meta.env.VITE_HOST_API;
-// const baseURL = VITE_HOST_API + "/users";
-// console.log("VITE_HOST_API", import.meta.env.VITE_HOST_API);
 const baseV1 = "/api/v1/logs";
 const instanceV1 = axios.create({
   baseURL: baseV1,
@@ -10,6 +8,14 @@ const instanceV1 = axios.create({
     "Content-Type": "application/json",
   },
 });
+instanceV1.interceptors.request.use(
+  interceptors.useToken,
+  interceptors.useError,
+);
+instanceV1.interceptors.request.use(
+  interceptors.useProject,
+  interceptors.useError,
+);
 
 const getQueryRange = async (params) => {
   const url = "query_range";

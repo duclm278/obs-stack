@@ -1,24 +1,27 @@
+import Root from "@/layouts/root";
+import Page404 from "@/pages/404";
+import PageDashboard from "@/pages/dashboard";
+import PageLogin from "@/pages/login";
+import PageLogout from "@/pages/logout";
+import PageLogs from "@/pages/logs";
+import PageMetrics from "@/pages/metrics";
+import PageProjects from "@/pages/projects";
+import PageSignup from "@/pages/signup";
+import PageTraces from "@/pages/traces";
+import PageWorkflows from "@/pages/workflows";
+import PageAlert from "@/pages/workflows/alert";
+import PageScale from "@/pages/workflows/scale";
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
-import Root from "./layouts/root";
-import Page404 from "./pages/404";
-import PageDashboard from "./pages/dashboard";
-import PageLogin from "./pages/login";
-import PageLogout from "./pages/logout";
-import PageLogs from "./pages/logs";
-import PageMetrics from "./pages/metrics";
-import PageProjects from "./pages/projects";
-import PageSignup from "./pages/signup";
-import PageTraces from "./pages/traces";
-import PageWorkflows from "./pages/workflows";
-import PageAlert from "./pages/workflows/alert";
-import PageScale from "./pages/workflows/scale";
+import ProtectedRoute from "./protected-route";
 
 const router = createBrowserRouter([
   {
     element: (
-      <Root>
-        <Outlet />
-      </Root>
+      <ProtectedRoute>
+        <Root>
+          <Outlet />
+        </Root>
+      </ProtectedRoute>
     ),
     children: [
       { index: true, element: <Navigate to="/logs" replace /> },

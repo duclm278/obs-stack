@@ -1,9 +1,9 @@
 import { Icons } from "@/components/app/icons";
 import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/app/user-auth-form";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { UserAuthForm } from "./user-auth-form";
 
 export default function PageLogin() {
   return (
@@ -25,7 +25,7 @@ export default function PageLogin() {
             Welcome back
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email to sign in to your account
+            Enter your credentials to sign in to your account
           </p>
         </div>
         <UserAuthForm />

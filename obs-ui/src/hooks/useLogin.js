@@ -1,17 +1,17 @@
-import userService from "../api/user";
+import authService from "../api/auth";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
   const { dispatch } = useAuthContext();
 
-  const login = async (email, password) => {
-    const response = await userService.login(email, password);
+  const login = async (username, password) => {
+    const token = await authService.login(username, password);
 
-    // Save user to local storage
-    localStorage.setItem("user", JSON.stringify(response));
+    // Save token to local storage
+    localStorage.setItem("token", token);
 
     // Update auth context
-    dispatch({ type: "LOGIN", payload: response });
+    dispatch({ type: "LOGIN", payload: token });
   };
 
   return login;

@@ -1,17 +1,28 @@
 import axios from "axios";
+import interceptors from "./interceptors";
 
-const VITE_HOST_API = import.meta.env.VITE_HOST_API;
-const baseURL = VITE_HOST_API + "/user";
-console.log("VITE_HOST_API", import.meta.env.VITE_HOST_API);
+const baseV1 = "/api/v1/users";
+const instanceV1 = axios.create({
+  baseURL: baseV1,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+instanceV1.interceptors.request.use(
+  interceptors.useToken,
+  interceptors.useError,
+);
 
-const login = async (email, password) => {
-  const response = await axios.post(`${baseURL}/login`, { email, password });
+const getMe = async () => {
+  const url = "me";
+  const response = await instanceV1.get(url);
   return response.data;
 };
 
-const signup = async (data) => {
-  const response = await axios.post(`${baseURL}/signup`, data);
+const updateMe = async (data) => {
+  const url = "me";
+  const response = await instanceV1.patch(url, data);
   return response.data;
 };
 
-export default { login, signup };
+export default { getMe, updateMe };
